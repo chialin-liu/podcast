@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 //conform to UISearchBarDelegate
 class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     let podcasts = [
@@ -32,7 +33,15 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     }
     //this function is conform to searchbarDelegate and catch the typeText
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
+        let url = "https://itunes.apple.com/search?term=\(searchText)"
+        AF.request(url).response { (dataResp) in
+            if let err = dataResp.error {
+                print("Failed to contact url", err)
+            }
+            guard let data = dataResp.data else {return}
+            let dummyString = String(data: data, encoding: .utf8)
+            print(dummyString ?? "")
+        }
     }
     // MARK: - setup tableView function
     fileprivate func setupTableView() {
