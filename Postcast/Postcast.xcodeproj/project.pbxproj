@@ -13,6 +13,8 @@
 		F3492923246698B900EF029D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3492922246698B900EF029D /* Assets.xcassets */; };
 		F3492926246698B900EF029D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3492924246698B900EF029D /* LaunchScreen.storyboard */; };
 		F349292E246698F700EF029D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349292D246698F700EF029D /* MainTabBarController.swift */; };
+		F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929302466B0D800EF029D /* PodcastSearchController.swift */; };
+		F34929342466B1DA00EF029D /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929332466B1DA00EF029D /* Podcast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		F3492925246698B900EF029D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3492927246698B900EF029D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F349292D246698F700EF029D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F34929302466B0D800EF029D /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
+		F34929332466B1DA00EF029D /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 		F3492918246698B500EF029D /* Postcast */ = {
 			isa = PBXGroup;
 			children = (
+				F34929322466B1C800EF029D /* Models */,
+				F349292F2466B0BC00EF029D /* Controllers */,
 				F3492919246698B500EF029D /* AppDelegate.swift */,
 				F349291D246698B500EF029D /* ViewController.swift */,
 				F349292D246698F700EF029D /* MainTabBarController.swift */,
@@ -65,6 +71,22 @@
 				F3492927246698B900EF029D /* Info.plist */,
 			);
 			path = Postcast;
+			sourceTree = "<group>";
+		};
+		F349292F2466B0BC00EF029D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F34929302466B0D800EF029D /* PodcastSearchController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F34929322466B1C800EF029D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F34929332466B1DA00EF029D /* Podcast.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +99,7 @@
 				F3492912246698B500EF029D /* Sources */,
 				F3492913246698B500EF029D /* Frameworks */,
 				F3492914246698B500EF029D /* Resources */,
+				F34929352467039B00EF029D /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -133,14 +156,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F34929352467039B00EF029D /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F3492912246698B500EF029D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349291A246698B500EF029D /* AppDelegate.swift in Sources */,
 				F349292E246698F700EF029D /* MainTabBarController.swift in Sources */,
+				F34929342466B1DA00EF029D /* Podcast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

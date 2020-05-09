@@ -12,21 +12,17 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = .purple
-        
         setupVC()
-        
     }
-    //MARK:- Setup Function
-    func setupVC(){
-        let favoriteNavVC = generateNavigationVC(with: ViewController(), title: "Favorites", image: UIImage(named: "favorites") ?? UIImage())
-            
-        let searchNavVC = generateNavigationVC(with: ViewController(), title: "Search", image: UIImage(named: "search") ?? UIImage())
-        
-        let downloadNavVC = generateNavigationVC(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads") ?? UIImage())
-        viewControllers = [favoriteNavVC, searchNavVC, downloadNavVC]
+    // MARK: - Setup Function
+    func setupVC() {
+        let fVC = genVC(with: ViewController(), title: "Favorites", image: UIImage(named: "favorites") ?? UIImage())
+        let sVC = genVC(with: PodcastSearchController(), title: "Search", image: UIImage(named: "search") ?? UIImage())
+        let dVC = genVC(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads") ?? UIImage())
+        viewControllers = [sVC, fVC, dVC]
     }
-    //MARK:- Helper Function
-    fileprivate func generateNavigationVC(with rootVC: UIViewController, title: String, image: UIImage) -> UINavigationController {
+    // MARK: - Helper Function
+    fileprivate func genVC(with rootVC: UIViewController, title: String, image: UIImage) -> UINavigationController {
         let navVC = UINavigationController(rootViewController: rootVC)
         navVC.navigationBar.prefersLargeTitles = true
         //Below will fail the code presentation
