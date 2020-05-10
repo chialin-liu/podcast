@@ -7,7 +7,8 @@
 //
 
 import Foundation
-struct Podcast {
-    let name: String
-    let artistName: String
+struct Podcast: Decodable {
+    //to use optional-> because some url response will not have these properties
+    var trackName: String?
+    var artistName: String?
 }
