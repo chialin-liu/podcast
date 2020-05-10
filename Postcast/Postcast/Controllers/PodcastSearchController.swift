@@ -30,21 +30,9 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     }
     //this function is conform to searchbarDelegate and catch the typeText
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        let url = "https://itunes.apple.com/search?term=\(searchText)"
-        let url = "https://itunes.apple.com/search"
-        let parameters = ["term": searchText, "media": "podcast"]
-        AF.request(url, method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil, requestModifier: nil).responseData { (dataResp) in
-            if let err = dataResp.error {
-                print("Failed to contact url", err)
-            }
-            guard let data = dataResp.data else {return}
-            do {
-                let searchResult = try  JSONDecoder().decode(SearchResults.self, from: data)
-                self.podcasts = searchResult.results
-                self.tableView.reloadData()
-            } catch let decodeErr {
-                print("Failed to decode", decodeErr)
-            }
+        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+            self.podcasts = podcasts
+            self.tableView.reloadData()
         }
     }
     // MARK: - setup tableView function

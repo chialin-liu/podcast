@@ -17,6 +17,7 @@
 		F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929302466B0D800EF029D /* PodcastSearchController.swift */; };
 		F34929342466B1DA00EF029D /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929332466B1DA00EF029D /* Podcast.swift */; };
 		F34929372467228700EF029D /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929362467228700EF029D /* SearchResults.swift */; };
+		F349293F2468045E00EF029D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349293E2468045E00EF029D /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F34929302466B0D800EF029D /* PodcastSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastSearchController.swift; sourceTree = "<group>"; };
 		F34929332466B1DA00EF029D /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		F34929362467228700EF029D /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		F349293E2468045E00EF029D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		F3492918246698B500EF029D /* Postcast */ = {
 			isa = PBXGroup;
 			children = (
+				F349293D2468044000EF029D /* API */,
 				F34929322466B1C800EF029D /* Models */,
 				F349292F2466B0BC00EF029D /* Controllers */,
 				F3492919246698B500EF029D /* AppDelegate.swift */,
@@ -114,6 +117,14 @@
 				F34929362467228700EF029D /* SearchResults.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F349293D2468044000EF029D /* API */ = {
+			isa = PBXGroup;
+			children = (
+				F349293E2468045E00EF029D /* APIService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */,
+				F349293F2468045E00EF029D /* APIService.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349291A246698B500EF029D /* AppDelegate.swift in Sources */,
 				F349292E246698F700EF029D /* MainTabBarController.swift in Sources */,
