@@ -35,9 +35,23 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
         }
     }
+    // MARK: - setup header info
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "please enter a search term"
+        label.textAlignment = .center
+        return label
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
+    }
     // MARK: - setup tableView function
     fileprivate func setupTableView() {
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        //TBD: please check
+        
+        tableView.tableFooterView = UIView()
+        //end
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
     }
@@ -48,10 +62,6 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? PodcastCell else { return UITableViewCell() }
         let podcast = podcasts[indexPath.row]
         cell.podcast = podcast
-//        cell.textLabel?.text = "\(podcast.trackName ?? "") \n\(podcast.artistName ?? "")"
-//        cell.textLabel?.numberOfLines = -1
-//        cell.backgroundColor = .yellow
-//        cell.imageView?.image = UIImage(named: "appicon")
         return cell
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

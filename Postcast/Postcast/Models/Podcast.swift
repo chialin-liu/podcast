@@ -11,4 +11,7 @@ struct Podcast: Decodable {
     //to use optional-> because some url response will not have these properties
     var trackName: String?
     var artistName: String?
+    var artworkUrl600: String?
+    var trackCount: Int?
+    var feedUrl: String?
 }
