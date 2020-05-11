@@ -18,6 +18,8 @@
 		F34929342466B1DA00EF029D /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929332466B1DA00EF029D /* Podcast.swift */; };
 		F34929372467228700EF029D /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34929362467228700EF029D /* SearchResults.swift */; };
 		F349293F2468045E00EF029D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349293E2468045E00EF029D /* APIService.swift */; };
+		F349294224691CE100EF029D /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F349294124691CE100EF029D /* PodcastCell.xib */; };
+		F349294424691F5700EF029D /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349294324691F5700EF029D /* PodcastCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		F34929332466B1DA00EF029D /* Podcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		F34929362467228700EF029D /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		F349293E2468045E00EF029D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		F349294124691CE100EF029D /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
+		F349294324691F5700EF029D /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 		F3492918246698B500EF029D /* Postcast */ = {
 			isa = PBXGroup;
 			children = (
+				F349294024691CA300EF029D /* Views */,
 				F349293D2468044000EF029D /* API */,
 				F34929322466B1C800EF029D /* Models */,
 				F349292F2466B0BC00EF029D /* Controllers */,
@@ -125,6 +130,15 @@
 				F349293E2468045E00EF029D /* APIService.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		F349294024691CA300EF029D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F349294124691CE100EF029D /* PodcastCell.xib */,
+				F349294324691F5700EF029D /* PodcastCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +204,7 @@
 			files = (
 				F3492926246698B900EF029D /* LaunchScreen.storyboard in Resources */,
 				F3492923246698B900EF029D /* Assets.xcassets in Resources */,
+				F349294224691CE100EF029D /* PodcastCell.xib in Resources */,
 				F3492921246698B500EF029D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +278,7 @@
 			files = (
 				F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */,
 				F349293F2468045E00EF029D /* APIService.swift in Sources */,
+				F349294424691F5700EF029D /* PodcastCell.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349291A246698B500EF029D /* AppDelegate.swift in Sources */,
 				F349292E246698F700EF029D /* MainTabBarController.swift in Sources */,

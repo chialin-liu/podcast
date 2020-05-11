@@ -13,7 +13,6 @@ class APIService {
     static let shared = APIService()
     let baseiTunesUrl = "https://itunes.apple.com/search"
     func fetchPodcasts(searchText: String, completionHandler: @escaping ([Podcast]) -> Void) {
-        
         let parameters = ["term": searchText, "media": "podcast"]
         AF.request(baseiTunesUrl, method: .get, parameters: parameters, encoder: URLEncodedFormParameterEncoder.default, headers: nil, interceptor: nil, requestModifier: nil).responseData { (dataResp) in
             if let err = dataResp.error {
