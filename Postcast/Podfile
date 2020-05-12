@@ -8,4 +8,5 @@ target 'Postcast' do
   # Pods for Postcast
   pod 'Alamofire', '~> 5.1'
   pod 'SDWebImage', '~> 5.0'
+  pod 'FeedKit', '~> 9.0'
 end

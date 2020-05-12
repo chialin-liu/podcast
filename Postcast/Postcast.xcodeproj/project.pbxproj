@@ -20,6 +20,8 @@
 		F349293F2468045E00EF029D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349293E2468045E00EF029D /* APIService.swift */; };
 		F349294224691CE100EF029D /* PodcastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F349294124691CE100EF029D /* PodcastCell.xib */; };
 		F349294424691F5700EF029D /* PodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349294324691F5700EF029D /* PodcastCell.swift */; };
+		F3492966246A1CD800EF029D /* EpisodesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492965246A1CD800EF029D /* EpisodesController.swift */; };
+		F3492968246A215800EF029D /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492967246A215800EF029D /* Episode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		F349293E2468045E00EF029D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		F349294124691CE100EF029D /* PodcastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PodcastCell.xib; sourceTree = "<group>"; };
 		F349294324691F5700EF029D /* PodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCell.swift; sourceTree = "<group>"; };
+		F3492965246A1CD800EF029D /* EpisodesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesController.swift; sourceTree = "<group>"; };
+		F3492967246A215800EF029D /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				F34929302466B0D800EF029D /* PodcastSearchController.swift */,
+				F3492965246A1CD800EF029D /* EpisodesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			children = (
 				F34929332466B1DA00EF029D /* Podcast.swift */,
 				F34929362467228700EF029D /* SearchResults.swift */,
+				F3492967246A215800EF029D /* Episode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,11 +285,13 @@
 				F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */,
 				F349293F2468045E00EF029D /* APIService.swift in Sources */,
 				F349294424691F5700EF029D /* PodcastCell.swift in Sources */,
+				F3492968246A215800EF029D /* Episode.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349291A246698B500EF029D /* AppDelegate.swift in Sources */,
 				F349292E246698F700EF029D /* MainTabBarController.swift in Sources */,
 				F34929372467228700EF029D /* SearchResults.swift in Sources */,
 				F34929342466B1DA00EF029D /* Podcast.swift in Sources */,
+				F3492966246A1CD800EF029D /* EpisodesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
