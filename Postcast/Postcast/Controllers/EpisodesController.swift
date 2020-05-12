@@ -16,10 +16,7 @@ class EpisodesController: UITableViewController {
             fetchEpisodes()
         }
     }
-    var episodes = [
-        Episode(title: "First"),
-        Episode(title: "Second")
-    ]
+    var episodes = [Episode]()
     let cellId = "cellId"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +35,7 @@ class EpisodesController: UITableViewController {
                 var episodes = [Episode]()
                 guard let items = feed.rssFeed?.items else { return }
                 for feedItem in items {
-                    episodes.append(Episode(title: feedItem.title ?? ""))
+                    episodes.append(Episode(feedItem: feedItem))
                 }
                 self.episodes = episodes
                 DispatchQueue.main.async {
@@ -51,7 +48,9 @@ class EpisodesController: UITableViewController {
     }
     // MARK: - setup cell
     func setupCell() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+// WRONG WRITING       tableView.register(EpisodeCell.self, forCellReuseIdentifier: cellId)
+        let nib = UINib(nibName: "EpisodeCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
         //TBD: to remove lines shows below
         tableView.tableFooterView = UIView()
     }
@@ -60,9 +59,12 @@ class EpisodesController: UITableViewController {
         return episodes.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? EpisodeCell else { return EpisodeCell() }
         let episode = episodes[indexPath.row]
-        cell.textLabel?.text = episode.title
+        cell.episode = episode
         return cell
+    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 134
     }
 }
