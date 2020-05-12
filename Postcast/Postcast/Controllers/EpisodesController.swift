@@ -26,23 +26,10 @@ class EpisodesController: UITableViewController {
     fileprivate func fetchEpisodes() {
         guard let feedUrl = podcast?.feedUrl else { return }
         //change feedurl to https:
-        let secureFeedUrl = feedUrl.contains("https") ? feedUrl : feedUrl.replacingOccurrences(of: "http", with: "https")
-        guard let url = URL(string: secureFeedUrl) else { return }
-        let parser = FeedParser(URL: url)
-        parser.parseAsync { (result) in
-            switch result {
-            case .success(let feed):
-                var episodes = [Episode]()
-                guard let items = feed.rssFeed?.items else { return }
-                for feedItem in items {
-                    episodes.append(Episode(feedItem: feedItem))
-                }
-                self.episodes = episodes
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("Failed to fetch RSS", error)
+        APIService.shared.fetchEpisodes(feedUrl: feedUrl) { (episodes) in
+            self.episodes = episodes
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
