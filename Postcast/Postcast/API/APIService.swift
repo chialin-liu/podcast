@@ -16,14 +16,18 @@ class APIService {
     func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> Void) {
         let secureFeedUrl = feedUrl.toSecureHTTPS()
         guard let url = URL(string: secureFeedUrl) else { return }
-        let parser = FeedParser(URL: url)
-        parser.parseAsync { (result) in
-            switch result {
-            case .success(let feed):
-                //use extensions RSSFeed.toEpisodes()
-                completionHandler(feed.rssFeed?.toEpisodes() ?? [])
-            case .failure(let error):
-                print("Failed to fetch RSS", error)
+        //FeedParser will block UI, synchronously
+        // to resolve-> use background & async
+        DispatchQueue.global(qos: .background).async {
+            let parser = FeedParser(URL: url)
+            parser.parseAsync { (result) in
+                switch result {
+                case .success(let feed):
+                    //use extensions RSSFeed.toEpisodes()
+                    completionHandler(feed.rssFeed?.toEpisodes() ?? [])
+                case .failure(let error):
+                    print("Failed to fetch RSS", error)
+                }
             }
         }
     }

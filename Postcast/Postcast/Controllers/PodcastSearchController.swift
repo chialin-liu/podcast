@@ -23,6 +23,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         searchBar(searchController.searchBar, textDidChange: "NPR")
     }
     // MARK: - Search Bar implement
+    var timer: Timer?
     fileprivate func setupSearchBar() {
         //TBD, why needs this?
 //        self.definesPresentationContext = true
@@ -34,10 +35,13 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     }
     //this function is conform to searchbarDelegate and catch the typeText
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
-            self.podcasts = podcasts
-            self.tableView.reloadData()
-        }
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            APIService.shared.fetchPodcasts(searchText: searchText) { (podcasts) in
+                self.podcasts = podcasts
+                self.tableView.reloadData()
+            }
+        })
     }
     // MARK: - setup header info
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -98,11 +98,14 @@ class PlayerDetailView: UIView {
     //TBD, don't know why..
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
-        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time) in
-            self.currentTimeLabel.text = time.toDisplayString()
-            let durationTime = self.player.currentItem?.duration
-            self.durationLabel.text = durationTime?.toDisplayString()
-            self.updateCurrentTimeSlider()
+        player.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self](time) in
+            //player has a reference to self
+            //self has a ref to player
+            // retain cycle-> to add [weak self] to resolve
+            self?.currentTimeLabel.text = time.toDisplayString()
+            let durationTime = self?.player.currentItem?.duration
+            self?.durationLabel.text = durationTime?.toDisplayString()
+            self?.updateCurrentTimeSlider()
         }
     }
     fileprivate func updateCurrentTimeSlider() {
@@ -116,8 +119,12 @@ class PlayerDetailView: UIView {
         observePlayerCurrentTime()
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
+        //player has a reference to self
+        //self has a ref to player
+        // retain cycle-> to add [weak self] to resolve
         player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
-            self.enlargeEpisodeImageView()
+            [weak self] in
+            self?.enlargeEpisodeImageView()
         }
     }
     @IBAction func handleDismiss(_ sender: Any) {
