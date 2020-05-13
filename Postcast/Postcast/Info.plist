@@ -3,18 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>mzstatic.com</key>
 			<dict>
-					<key>NSExceptionDomains</key>
-					<dict>
-							<key>mzstatic.com</key>
-							<dict>
-									<key>NSExceptionAllowsInsecureHTTPLoads</key>
-									<true/>
-									<key>NSIncludesSubdomains</key>
-									<true/>
-							</dict>
-					</dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
 			</dict>
+		</dict>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

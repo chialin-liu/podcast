@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-UY-JfE">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="L9R-UY-JfE">
                     <rect key="frame" x="24" y="44" width="366" height="794"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeD-jR-4pV">
@@ -21,29 +21,129 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="l7r-ld-KD1"/>
                             </constraints>
-                            <state key="normal" title="Dismiss"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <state key="normal" title="Back">
+                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
                             <connections>
                                 <action selector="handleDismiss:" destination="4HD-O6-ooh" eventType="touchUpInside" id="2om-GI-3f5"/>
                             </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appicon" translatesAutoresizingMaskIntoConstraints="NO" id="JIM-ke-O8B">
-                            <rect key="frame" x="0.0" y="44" width="366" height="366"/>
+                            <rect key="frame" x="0.0" y="47" width="366" height="366"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="JIM-ke-O8B" secondAttribute="height" id="YbF-Nv-sje"/>
                             </constraints>
                         </imageView>
                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nst-Wz-jiR">
-                            <rect key="frame" x="-2" y="410" width="370" height="45"/>
+                            <rect key="frame" x="-2" y="416" width="370" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="d9h-zd-9bW"/>
                             </constraints>
                         </slider>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3p-kO-wik">
+                            <rect key="frame" x="0.0" y="463" width="366" height="22"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zG4-gR-bPh">
+                                    <rect key="frame" x="0.0" y="0.0" width="311" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="11:11:11" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYm-Hg-9J7">
+                                    <rect key="frame" x="311" y="0.0" width="55" height="22"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="rj1-YD-CyU"/>
+                            </constraints>
+                        </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="episode title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESa-QK-8NK">
-                            <rect key="frame" x="0.0" y="454" width="366" height="340"/>
+                            <rect key="frame" x="0.0" y="488" width="366" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="uqn-SP-FdI"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auther" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnY-VW-JIw">
+                            <rect key="frame" x="0.0" y="511" width="366" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="QDJ-Sd-wna"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="3fd-J5-CxO">
+                            <rect key="frame" x="0.0" y="534" width="366" height="223"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJj-r5-Oom">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="223"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s30-pD-0ft">
+                                    <rect key="frame" x="55.5" y="0.0" width="44" height="223"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="vNM-z3-NGJ"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="rewind15"/>
+                                </button>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8l-GX-O2e">
+                                    <rect key="frame" x="105.5" y="0.0" width="50" height="223"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fA-Fb-m1q">
+                                    <rect key="frame" x="156" y="0.0" width="54" height="223"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="54" id="6fP-OR-cVk"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="play"/>
+                                </button>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FHG-gQ-SYe">
+                                    <rect key="frame" x="210.5" y="0.0" width="50" height="223"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZN6-j2-Pf2">
+                                    <rect key="frame" x="266.5" y="0.0" width="44" height="223"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="Mcf-uP-nFk"/>
+                                    </constraints>
+                                    <state key="normal" title="Button" image="fastforward15"/>
+                                </button>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Sx-7U-BKh">
+                                    <rect key="frame" x="316" y="0.0" width="50" height="223"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKa-vx-bL2">
+                            <rect key="frame" x="0.0" y="760" width="366" height="34"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="muted_volume" translatesAutoresizingMaskIntoConstraints="NO" id="buK-ft-1xo">
+                                    <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="Qva-oK-fGE"/>
+                                    </constraints>
+                                </imageView>
+                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="voQ-as-PqA">
+                                    <rect key="frame" x="32" y="0.0" width="302" height="35"/>
+                                </slider>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="max_volume" translatesAutoresizingMaskIntoConstraints="NO" id="5fl-SZ-DJJ">
+                                    <rect key="frame" x="332" y="0.0" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="uIx-T9-mGz"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="pV0-ro-ugY"/>
+                            </constraints>
+                        </stackView>
                     </subviews>
                 </stackView>
             </subviews>
@@ -56,13 +156,20 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="BLr-RD-aVq"/>
             <connections>
+                <outlet property="authorLabel" destination="nnY-VW-JIw" id="xyd-pE-6qH"/>
                 <outlet property="episodeImageView" destination="JIM-ke-O8B" id="PAg-1t-3yS"/>
                 <outlet property="episodeLabel" destination="ESa-QK-8NK" id="rol-Ax-amg"/>
+                <outlet property="playPauseButton" destination="4fA-Fb-m1q" id="quU-ya-N5x"/>
             </connections>
-            <point key="canvasLocation" x="-346" y="40"/>
+            <point key="canvasLocation" x="-401" y="9"/>
         </view>
     </objects>
     <resources>
         <image name="appicon" width="60" height="60"/>
+        <image name="fastforward15" width="45.5" height="45.5"/>
+        <image name="max_volume" width="32.5" height="32.5"/>
+        <image name="muted_volume" width="32.5" height="32.5"/>
+        <image name="play" width="59" height="59"/>
+        <image name="rewind15" width="45.5" height="45.5"/>
     </resources>
 </document>
