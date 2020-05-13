@@ -95,6 +95,9 @@
                                         <constraint firstAttribute="width" constant="44" id="vNM-z3-NGJ"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="rewind15"/>
+                                    <connections>
+                                        <action selector="handleRewind:" destination="4HD-O6-ooh" eventType="touchUpInside" id="nEe-O9-Fz4"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8l-GX-O2e">
                                     <rect key="frame" x="105.5" y="0.0" width="50" height="223"/>
@@ -117,6 +120,9 @@
                                         <constraint firstAttribute="width" constant="44" id="Mcf-uP-nFk"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="fastforward15"/>
+                                    <connections>
+                                        <action selector="handleFastForward:" destination="4HD-O6-ooh" eventType="touchUpInside" id="zG7-f0-BcS"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Sx-7U-BKh">
                                     <rect key="frame" x="316" y="0.0" width="50" height="223"/>
@@ -135,6 +141,9 @@
                                 </imageView>
                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="voQ-as-PqA">
                                     <rect key="frame" x="32" y="0.0" width="302" height="35"/>
+                                    <connections>
+                                        <action selector="handleSound:" destination="4HD-O6-ooh" eventType="valueChanged" id="LWY-aD-aIF"/>
+                                    </connections>
                                 </slider>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="max_volume" translatesAutoresizingMaskIntoConstraints="NO" id="5fl-SZ-DJJ">
                                     <rect key="frame" x="332" y="0.0" width="34" height="34"/>

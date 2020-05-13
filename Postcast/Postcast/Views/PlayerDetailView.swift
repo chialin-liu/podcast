@@ -33,6 +33,20 @@ class PlayerDetailView: UIView {
         avplayer.automaticallyWaitsToMinimizeStalling = false
         return avplayer
     }()
+    @IBAction func handleSound(_ sender: UISlider) {
+        player.volume = sender.value
+    }
+    @IBAction func handleRewind(_ sender: Any) {
+        seekToCurrentTime(delta: -15)
+    }
+    fileprivate func seekToCurrentTime(delta: Int64) {
+        let fifteen = CMTimeMake(value: delta, timescale: 1)
+        let seekTime = CMTimeAdd(player.currentTime(), fifteen)
+        player.seek(to: seekTime)
+    }
+    @IBAction func handleFastForward(_ sender: Any) {
+        seekToCurrentTime(delta: 15)
+    }
     @IBOutlet weak var currentTimeSlider: UISlider!
     @IBOutlet weak var playPauseButton: UIButton! {
         didSet {
@@ -40,6 +54,13 @@ class PlayerDetailView: UIView {
         }
     }
     @IBAction func currentTimeSlider(_ sender: Any) {
+        let percentage = currentTimeSlider.value
+        guard let duration = player.currentItem?.duration else { return }
+        let durationSeconds = CMTimeGetSeconds(duration)
+        let seekTimeSeconds = Float64(percentage) * durationSeconds
+//        let seekTime = CMTimeMakeWithSeconds(seekTimeSeconds, preferredTimescale: 1)
+        let seekTime = CMTime(value: CMTimeValue(seekTimeSeconds), timescale: 1)
+        player.seek(to: seekTime)
     }
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var currentTimeLabel: UILabel!
