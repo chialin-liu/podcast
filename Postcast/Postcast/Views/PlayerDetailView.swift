@@ -42,10 +42,18 @@ class PlayerDetailView: UIView {
         if player.timeControlStatus == .paused {
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
             player.play()
+            enlargeEpisodeImageView()
         } else {
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             player.pause()
+            shrinkEpisodeImageView()
         }
+    }
+    fileprivate func shrinkEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            let scale: CGFloat = 0.7
+            self.episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }, completion: nil)
     }
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var episodeLabel: UILabel! {
@@ -53,8 +61,29 @@ class PlayerDetailView: UIView {
             episodeLabel.numberOfLines = 2
         }
     }
-    @IBOutlet weak var episodeImageView: UIImageView!
+    @IBOutlet weak var episodeImageView: UIImageView! {
+        didSet {
+            episodeImageView.layer.cornerRadius = 5
+            episodeImageView.clipsToBounds = true
+            let scale: CGFloat = 0.7
+            episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
+        }
+    }
+    //TBD, don't know why..
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let time = CMTimeMake(value: 1, timescale: 3)
+        let times = [NSValue(time: time)]
+        player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
+            self.enlargeEpisodeImageView()
+        }
+    }
     @IBAction func handleDismiss(_ sender: Any) {
         self.removeFromSuperview()
+    }
+    fileprivate func enlargeEpisodeImageView() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.episodeImageView.transform = .identity
+        }, completion: nil)
     }
 }

@@ -20,6 +20,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         setupSearchBar()
         setupTableView()
+        searchBar(searchController.searchBar, textDidChange: "NPR")
     }
     // MARK: - Search Bar implement
     fileprivate func setupSearchBar() {
