@@ -95,6 +95,10 @@ class PlayerDetailView: UIView {
             episodeImageView.transform = CGAffineTransform(scaleX: scale, y: scale)
         }
     }
+    static func initFromNib() -> PlayerDetailView {
+        guard let playerDetailView = Bundle.main.loadNibNamed("PlayerDetailView", owner: self, options: nil)?.first as? PlayerDetailView else { return PlayerDetailView() }
+        return playerDetailView
+    }
     //TBD, don't know why..
     fileprivate func observePlayerCurrentTime() {
         let interval = CMTimeMake(value: 1, timescale: 2)
