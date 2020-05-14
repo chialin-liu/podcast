@@ -15,8 +15,10 @@ class PlayerDetailView: UIView {
     var episode: Episode! {
         didSet {
             episodeLabel.text = episode.title
+            miniTitleLabel.text = episode.title
             let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
             episodeImageView.sd_setImage(with: url, completed: nil)
+            miniEpisodeImageView.sd_setImage(with: url, completed: nil)
             authorLabel.text = episode.author
             playEpisode()
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
@@ -67,10 +69,12 @@ class PlayerDetailView: UIView {
     @objc func handlePlayPause() {
         if player.timeControlStatus == .paused {
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
             player.play()
             enlargeEpisodeImageView()
         } else {
             playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
             player.pause()
             shrinkEpisodeImageView()
         }
@@ -123,9 +127,14 @@ class PlayerDetailView: UIView {
         //not pass new episode, just max the detail
         mainTabController.maxmizePlayerDetail(episode: nil)
     }
+    @IBOutlet weak var miniPlayerView: UIView!
+    @IBOutlet weak var maximizedStackView: UIStackView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+//        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(handleTapMaximize))
+        swipe.direction = .up
+        addGestureRecognizer(swipe)
         observePlayerCurrentTime()
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
@@ -137,6 +146,19 @@ class PlayerDetailView: UIView {
             self?.enlargeEpisodeImageView()
         }
     }
+    @IBOutlet weak var miniFastForwardButton: UIButton! {
+        didSet {
+            miniFastForwardButton.addTarget(self, action: #selector(handleFastForward), for: .touchUpInside)
+        }
+    }
+    @IBOutlet weak var miniTitleLabel: UILabel!
+    @IBOutlet weak var miniPlayPauseButton: UIButton! {
+        didSet {
+            miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            miniPlayPauseButton.addTarget(self, action: #selector(handlePlayPause), for: .touchUpInside)
+        }
+    }
+    @IBOutlet weak var miniEpisodeImageView: UIImageView!
     @IBAction func handleDismiss(_ sender: Any) {
 //        self.removeFromSuperview()
 //        let mainTabController = MainTabBarController()
