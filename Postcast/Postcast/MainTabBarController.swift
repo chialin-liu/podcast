@@ -12,33 +12,37 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = .purple
-        tabBar.backgroundColor = .yellow
+//        tabBar.backgroundColor = .yellow
         setupVC()
         setupPlayerDetailView()
-        perform(#selector(maxmizePlayerDetail), with: nil, afterDelay: 1)
+//        perform(#selector(maxmizePlayerDetail), with: nil, afterDelay: 1)
     }
     @objc func minimizePlayerDetail() {
         maxTopAnchorContraint.isActive = false
         minTopAnchorContraint.isActive = true
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
+            self.tabBar.transform = .identity
         }, completion: nil)
     }
-    @objc func maxmizePlayerDetail() {
+    func maxmizePlayerDetail(episode: Episode?) {
         maxTopAnchorContraint.isActive = true
         maxTopAnchorContraint.constant = 0
         minTopAnchorContraint.isActive = false
+        guard let episode = episode else { return }
+        playerDetailView.episode = episode
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
+            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         }, completion: nil)
     }
     var maxTopAnchorContraint: NSLayoutConstraint!
     var minTopAnchorContraint: NSLayoutConstraint!
+    let playerDetailView = PlayerDetailView.initFromNib()
     fileprivate func setupPlayerDetailView() {
-        let playerDetailView = PlayerDetailView.initFromNib()
 //        self.view.addSubview(playerDetailView)
         self.view.insertSubview(playerDetailView, belowSubview: tabBar)
-        playerDetailView.backgroundColor = .red
+//        playerDetailView.backgroundColor = .red
         playerDetailView.translatesAutoresizingMaskIntoConstraints = false
         maxTopAnchorContraint = playerDetailView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height)
         maxTopAnchorContraint.isActive = true

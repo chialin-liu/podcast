@@ -118,8 +118,15 @@ class PlayerDetailView: UIView {
         let percentage = currentTimeSeconds / durationTimeSeconds
         self.currentTimeSlider.value = Float(percentage)
     }
+    @objc func handleTapMaximize() {
+//        print("Tap TAP")
+        let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        //not pass new episode, just max the detail
+        mainTabController?.maxmizePlayerDetail(episode: nil)
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapMaximize)))
         observePlayerCurrentTime()
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
@@ -132,7 +139,10 @@ class PlayerDetailView: UIView {
         }
     }
     @IBAction func handleDismiss(_ sender: Any) {
-        self.removeFromSuperview()
+//        self.removeFromSuperview()
+//        let mainTabController = MainTabBarController()
+        let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController
+        mainTabController?.minimizePlayerDetail()
     }
     fileprivate func enlargeEpisodeImageView() {
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
