@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = .purple
-//        tabBar.backgroundColor = .yellow
+        tabBar.backgroundColor = .yellow
         setupVC()
         setupPlayerDetailView()
 //        perform(#selector(maxmizePlayerDetail), with: nil, afterDelay: 1)
@@ -20,20 +20,24 @@ class MainTabBarController: UITabBarController {
     @objc func minimizePlayerDetail() {
         maxTopAnchorContraint.isActive = false
         minTopAnchorContraint.isActive = true
+        self.tabBar.isHidden = false
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-            self.tabBar.transform = .identity
+//            self.tabBar.transform = .identity
         }, completion: nil)
     }
     func maxmizePlayerDetail(episode: Episode?) {
         maxTopAnchorContraint.isActive = true
         maxTopAnchorContraint.constant = 0
         minTopAnchorContraint.isActive = false
-        guard let episode = episode else { return }
-        playerDetailView.episode = episode
+        //use if check means, playDetailView's episode is !, if episode is nil->crash
+        if episode != nil {
+            playerDetailView.episode = episode
+        }
+        self.tabBar.isHidden = true
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
-            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
+//            self.tabBar.transform = CGAffineTransform(translationX: 0, y: 100)
         }, completion: nil)
     }
     var maxTopAnchorContraint: NSLayoutConstraint!
