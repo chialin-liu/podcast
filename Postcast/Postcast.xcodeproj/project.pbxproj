@@ -29,6 +29,7 @@
 		F3492973246AD6D800EF029D /* PlayerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3492972246AD6D800EF029D /* PlayerDetailView.xib */; };
 		F3492975246ADC1C00EF029D /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492974246ADC1C00EF029D /* PlayerDetailView.swift */; };
 		F3492977246C2EBE00EF029D /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492976246C2EBE00EF029D /* CMTime.swift */; };
+		F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		F3492972246AD6D800EF029D /* PlayerDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailView.xib; sourceTree = "<group>"; };
 		F3492974246ADC1C00EF029D /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		F3492976246C2EBE00EF029D /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
+		F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewGestures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				F349296A246A5ECE00EF029D /* EpisodeCell.xib */,
 				F3492972246AD6D800EF029D /* PlayerDetailView.xib */,
 				F3492974246ADC1C00EF029D /* PlayerDetailView.swift */,
+				F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				F349294424691F5700EF029D /* PodcastCell.swift in Sources */,
 				F349296B246A5ECE00EF029D /* EpisodeCell.swift in Sources */,
 				F3492968246A215800EF029D /* Episode.swift in Sources */,
+				F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */,
 				F3492975246ADC1C00EF029D /* PlayerDetailView.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349296F246AC8A200EF029D /* String.swift in Sources */,

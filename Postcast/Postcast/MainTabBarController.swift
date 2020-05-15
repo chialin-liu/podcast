@@ -30,9 +30,9 @@ class MainTabBarController: UITabBarController {
         }, completion: nil)
     }
     func maxmizePlayerDetail(episode: Episode?) {
+        minTopAnchorContraint.isActive = false
         maxTopAnchorContraint.isActive = true
         maxTopAnchorContraint.constant = 0
-        minTopAnchorContraint.isActive = false
         bottomAnchorContraint.constant = 0
         //use if check means, playDetailView's episode is !, if episode is nil->crash
         if episode != nil {
