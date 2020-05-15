@@ -12,7 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.tintColor = .purple
-        tabBar.backgroundColor = .yellow
+//        tabBar.backgroundColor = .yellow
         setupVC()
         setupPlayerDetailView()
 //        perform(#selector(maxmizePlayerDetail), with: nil, afterDelay: 1)
@@ -20,6 +20,7 @@ class MainTabBarController: UITabBarController {
     @objc func minimizePlayerDetail() {
         maxTopAnchorContraint.isActive = false
         minTopAnchorContraint.isActive = true
+        bottomAnchorContraint.constant = view.frame.height
         self.tabBar.isHidden = false
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.view.layoutIfNeeded()
@@ -32,6 +33,7 @@ class MainTabBarController: UITabBarController {
         maxTopAnchorContraint.isActive = true
         maxTopAnchorContraint.constant = 0
         minTopAnchorContraint.isActive = false
+        bottomAnchorContraint.constant = 0
         //use if check means, playDetailView's episode is !, if episode is nil->crash
         if episode != nil {
             playerDetailView.episode = episode
@@ -46,6 +48,7 @@ class MainTabBarController: UITabBarController {
     }
     var maxTopAnchorContraint: NSLayoutConstraint!
     var minTopAnchorContraint: NSLayoutConstraint!
+    var bottomAnchorContraint: NSLayoutConstraint!
     let playerDetailView = PlayerDetailView.initFromNib()
     fileprivate func setupPlayerDetailView() {
 //        self.view.addSubview(playerDetailView)
@@ -57,7 +60,9 @@ class MainTabBarController: UITabBarController {
         minTopAnchorContraint = playerDetailView.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: -64)
 //        minTopAnchorContraint.isActive = true
         playerDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playerDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//        playerDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        bottomAnchorContraint = playerDetailView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.frame.height)
+        bottomAnchorContraint.isActive = true
         playerDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     // MARK: - Setup Function
