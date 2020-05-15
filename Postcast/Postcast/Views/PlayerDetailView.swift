@@ -11,6 +11,7 @@ import UIKit
 import SDWebImage
 import AVKit
 import AVFoundation
+import MediaPlayer
 class PlayerDetailView: UIView {
     var episode: Episode! {
         didSet {
@@ -149,8 +150,38 @@ class PlayerDetailView: UIView {
             }, completion: nil)
         }
     }
+    func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+            try AVAudioSession.sharedInstance().setActive(true, options: .init())
+        } catch let err {
+            print("Failed to activate session", err)
+        }
+    }
+    func setupRemoteControl() {
+        UIApplication.shared.beginReceivingRemoteControlEvents()
+        let commandCenter = MPRemoteCommandCenter.shared()
+        commandCenter.playCommand.isEnabled = true
+        commandCenter.playCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            print("Should play podcast")
+            self.player.play()
+            self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            self.miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            return .success
+        }
+        commandCenter.pauseCommand.isEnabled = true
+        commandCenter.pauseCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            print("Should pause the podcast..")
+            self.player.pause()
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            self.miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            return .success
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupRemoteControl()
+        setupAudioSession()
         setupGestures()
         observePlayerCurrentTime()
         let time = CMTimeMake(value: 1, timescale: 3)
