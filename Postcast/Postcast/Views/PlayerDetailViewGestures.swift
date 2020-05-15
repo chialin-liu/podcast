@@ -34,8 +34,7 @@ extension PlayerDetailView {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.transform = .identity
             if translation.y < -200 || velocity.y < -500 {
-                guard let mainTabController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
-                mainTabController.maxmizePlayerDetail(episode: nil)
+                UIApplication.mainTabController().maxmizePlayerDetail(episode: nil)
 //                gesture.isEnabled = false
             } else {
                 self.miniPlayerView.alpha = 1
