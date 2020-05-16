@@ -13,6 +13,7 @@ import AVKit
 import AVFoundation
 import MediaPlayer
 class PlayerDetailView: UIView {
+    var playListEpisodes = [Episode]()
     var episode: Episode! {
         didSet {
             episodeLabel.text = episode.title
@@ -195,6 +196,42 @@ class PlayerDetailView: UIView {
             print("Failed to activate session", err)
         }
     }
+    fileprivate func handleNextTrack() {
+        print("Enter Next")
+        if playListEpisodes.count == 0 {
+            return
+        }
+        let currentIndex = playListEpisodes.firstIndex { (epi) -> Bool in
+            return self.episode.title == epi.title && self.episode.author == epi.author
+        }
+        guard let index = currentIndex else { return }
+        let nextEpisode: Episode
+        if index == playListEpisodes.count - 1 {
+            nextEpisode = playListEpisodes[0]
+        } else {
+            nextEpisode = playListEpisodes[index + 1]
+        }
+        print("Next Episode Title", nextEpisode.title)
+        self.episode = nextEpisode
+    }
+    fileprivate func handlePreTrack() {
+            print("Enter Previous")
+            if playListEpisodes.count == 0 {
+                return
+            }
+            let currentIndex = playListEpisodes.firstIndex { (epi) -> Bool in
+                return self.episode.title == epi.title && self.episode.author == epi.author
+            }
+            guard let index = currentIndex else { return }
+            let preEpisode: Episode
+            if index == 0 {
+                preEpisode = playListEpisodes[playListEpisodes.count - 1]
+            } else {
+                preEpisode = playListEpisodes[index - 1]
+            }
+            print("Previous Episode Title", preEpisode.title)
+            self.episode = preEpisode
+        }
     func setupRemoteControl() {
         UIApplication.shared.beginReceivingRemoteControlEvents()
         let commandCenter = MPRemoteCommandCenter.shared()
@@ -214,6 +251,16 @@ class PlayerDetailView: UIView {
             self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             self.miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
 //            self.setupElapsedTime()
+            return .success
+        }
+        commandCenter.nextTrackCommand.isEnabled = true
+        commandCenter.nextTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handleNextTrack()
+            return .success
+        }
+        commandCenter.previousTrackCommand.isEnabled = true
+        commandCenter.previousTrackCommand.addTarget { (_) -> MPRemoteCommandHandlerStatus in
+            self.handlePreTrack()
             return .success
         }
     }
