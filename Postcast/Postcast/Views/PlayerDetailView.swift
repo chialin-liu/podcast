@@ -20,10 +20,36 @@ class PlayerDetailView: UIView {
             let url = URL(string: episode.imageUrl?.toSecureHTTPS() ?? "")
             episodeImageView.sd_setImage(with: url, completed: nil)
             miniEpisodeImageView.sd_setImage(with: url, completed: nil)
+//            miniEpisodeImageView.sd_setImage(with: url) { (image, _, _, _) in
+//                guard let image = image else {
+//                    print("Loss the image")
+//                    return }
+//                let artWork = MPMediaItemArtwork.init(boundsSize: image.size) { (_) -> UIImage in
+//                    return image
+//                }
+//                var nowPlayInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo
+//                nowPlayInfo?[MPMediaItemPropertyArtwork] = artWork
+//                MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayInfo
+//            }
+            miniEpisodeImageView.sd_setImage(with: url) { (image, _, _, _) in
+                let image = self.episodeImageView.image ?? UIImage()
+                let artworkItem = MPMediaItemArtwork(boundsSize: .zero, requestHandler: { (_) -> UIImage in
+                    return image
+                })
+                print("Enter miniEpisodeImage")
+                MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyArtwork] = artworkItem
+            }
             authorLabel.text = episode.author
             playEpisode()
             playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+            setupNowPlayInfo()
         }
+    }
+    fileprivate func setupNowPlayInfo() {
+        var nowPlayInfo = [String: Any]()
+        nowPlayInfo[MPMediaItemPropertyTitle] = episode.title
+        nowPlayInfo[MPMediaItemPropertyArtist] = episode.author
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayInfo
     }
     fileprivate func playEpisode() {
         guard let url = URL(string: episode.streamUrl.toSecureHTTPS()) else { return }
@@ -63,6 +89,7 @@ class PlayerDetailView: UIView {
         let seekTimeSeconds = Float64(percentage) * durationSeconds
 //        let seekTime = CMTimeMakeWithSeconds(seekTimeSeconds, preferredTimescale: 1)
         let seekTime = CMTime(value: CMTimeValue(seekTimeSeconds), timescale: 1)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = seekTimeSeconds
         player.seek(to: seekTime)
     }
     @IBOutlet weak var durationLabel: UILabel!
@@ -115,7 +142,17 @@ class PlayerDetailView: UIView {
             let durationTime = self?.player.currentItem?.duration
             self?.durationLabel.text = durationTime?.toDisplayString()
             self?.updateCurrentTimeSlider()
+            self?.setupLockscreenCurrentTime()
         }
+    }
+    fileprivate func setupLockscreenCurrentTime() {
+//        guard let currentItem = player.currentItem else { return }
+//        let durationSeconds = CMTimeGetSeconds(currentItem.duration)
+        let elapsedTime = CMTimeGetSeconds(player.currentTime())
+        var nowPlayInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
+        nowPlayInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsedTime
+//        nowPlayInfo[MPMediaItemPropertyPlaybackDuration] = durationSeconds
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayInfo
     }
     fileprivate func updateCurrentTimeSlider() {
         let currentTimeSeconds = CMTimeGetSeconds(player.currentTime())
@@ -167,6 +204,7 @@ class PlayerDetailView: UIView {
             self.player.play()
             self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
             self.miniPlayPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+//            self.setupElapsedTime()
             return .success
         }
         commandCenter.pauseCommand.isEnabled = true
@@ -175,15 +213,15 @@ class PlayerDetailView: UIView {
             self.player.pause()
             self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             self.miniPlayPauseButton.setImage(UIImage(named: "play"), for: .normal)
+//            self.setupElapsedTime()
             return .success
         }
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupRemoteControl()
-        setupAudioSession()
-        setupGestures()
-        observePlayerCurrentTime()
+    fileprivate func setupElapsedTime() {
+        let elapsed = CMTimeGetSeconds(player.currentTime())
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = elapsed
+    }
+    fileprivate func observeBoundaryTime() {
         let time = CMTimeMake(value: 1, timescale: 3)
         let times = [NSValue(time: time)]
         //player has a reference to self
@@ -192,7 +230,21 @@ class PlayerDetailView: UIView {
         player.addBoundaryTimeObserver(forTimes: times, queue: .main) {
             [weak self] in
             self?.enlargeEpisodeImageView()
+            self?.setupLockScreenDuration()
         }
+    }
+    fileprivate func setupLockScreenDuration() {
+        guard let duration = player.currentItem?.duration else { return }
+        let durationSeconds = CMTimeGetSeconds(duration)
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPMediaItemPropertyPlaybackDuration] = durationSeconds
+    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupRemoteControl()
+        setupAudioSession()
+        setupGestures()
+        observePlayerCurrentTime()
+        observeBoundaryTime()
     }
     @IBOutlet weak var miniFastForwardButton: UIButton! {
         didSet {
