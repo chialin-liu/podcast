@@ -11,10 +11,9 @@ import UIKit
 class FavoritesController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     let cellId = "cellId"
     fileprivate func setupCollectionView() {
-        collectionView.backgroundColor = .blue
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.backgroundColor = .white
+        collectionView.register(FavoritePodcastCell.self, forCellWithReuseIdentifier: cellId)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -27,14 +26,13 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (view.frame.width - 3 * 16) / 2
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width + 46)
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .red
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? FavoritePodcastCell else { return UICollectionViewCell() }
         return cell
     }
 }

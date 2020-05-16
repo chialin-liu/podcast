@@ -32,6 +32,7 @@
 		F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */; };
 		F349297B246E9CC200EF029D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349297A246E9CC200EF029D /* UIApplication.swift */; };
 		F3838E7A2470374100E3E7AF /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E792470374100E3E7AF /* FavoritesController.swift */; };
+		F3838E7C2470A24800E3E7AF /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewGestures.swift; sourceTree = "<group>"; };
 		F349297A246E9CC200EF029D /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		F3838E792470374100E3E7AF /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
+		F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				F3492972246AD6D800EF029D /* PlayerDetailView.xib */,
 				F3492974246ADC1C00EF029D /* PlayerDetailView.swift */,
 				F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */,
+				F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				F349293F2468045E00EF029D /* APIService.swift in Sources */,
 				F349294424691F5700EF029D /* PodcastCell.swift in Sources */,
 				F349296B246A5ECE00EF029D /* EpisodeCell.swift in Sources */,
+				F3838E7C2470A24800E3E7AF /* FavoritePodcastCell.swift in Sources */,
 				F3492968246A215800EF029D /* Episode.swift in Sources */,
 				F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */,
 				F3492975246ADC1C00EF029D /* PlayerDetailView.swift in Sources */,
