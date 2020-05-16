@@ -18,6 +18,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
     let searchController = UISearchController(searchResultsController: nil)
     override func viewDidLoad() {
         super.viewDidLoad()
+//        view.backgroundColor = .white
         setupSearchBar()
         setupTableView()
         searchBar(searchController.searchBar, textDidChange: "NPR")

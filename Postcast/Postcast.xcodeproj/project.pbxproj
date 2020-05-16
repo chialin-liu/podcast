@@ -31,6 +31,7 @@
 		F3492977246C2EBE00EF029D /* CMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492976246C2EBE00EF029D /* CMTime.swift */; };
 		F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */; };
 		F349297B246E9CC200EF029D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = F349297A246E9CC200EF029D /* UIApplication.swift */; };
+		F3838E7A2470374100E3E7AF /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E792470374100E3E7AF /* FavoritesController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		F3492976246C2EBE00EF029D /* CMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMTime.swift; sourceTree = "<group>"; };
 		F3492978246E567E00EF029D /* PlayerDetailViewGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewGestures.swift; sourceTree = "<group>"; };
 		F349297A246E9CC200EF029D /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		F3838E792470374100E3E7AF /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				F34929302466B0D800EF029D /* PodcastSearchController.swift */,
 				F3492965246A1CD800EF029D /* EpisodesController.swift */,
+				F3838E792470374100E3E7AF /* FavoritesController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
 				F349296F246AC8A200EF029D /* String.swift in Sources */,
 				F349291A246698B500EF029D /* AppDelegate.swift in Sources */,
+				F3838E7A2470374100E3E7AF /* FavoritesController.swift in Sources */,
 				F349297B246E9CC200EF029D /* UIApplication.swift in Sources */,
 				F349292E246698F700EF029D /* MainTabBarController.swift in Sources */,
 				F34929372467228700EF029D /* SearchResults.swift in Sources */,

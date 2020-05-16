@@ -68,7 +68,8 @@ class MainTabBarController: UITabBarController {
     }
     // MARK: - Setup Function
     func setupVC() {
-        let fVC = genVC(with: ViewController(), title: "Favorites", image: UIImage(named: "favorites") ?? UIImage())
+        let favoriteController = FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())
+        let fVC = genVC(with: favoriteController, title: "Favorites", image: UIImage(named: "favorites") ?? UIImage())
         let sVC = genVC(with: PodcastSearchController(), title: "Search", image: UIImage(named: "search") ?? UIImage())
         let dVC = genVC(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads") ?? UIImage())
         viewControllers = [sVC, fVC, dVC]
