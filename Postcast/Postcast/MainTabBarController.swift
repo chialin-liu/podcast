@@ -71,7 +71,7 @@ class MainTabBarController: UITabBarController {
         let favoriteController = FavoritesController(collectionViewLayout: UICollectionViewFlowLayout())
         let fVC = genVC(with: favoriteController, title: "Favorites", image: UIImage(named: "favorites") ?? UIImage())
         let sVC = genVC(with: PodcastSearchController(), title: "Search", image: UIImage(named: "search") ?? UIImage())
-        let dVC = genVC(with: ViewController(), title: "Downloads", image: UIImage(named: "downloads") ?? UIImage())
+        let dVC = genVC(with: DownloadController(), title: "Downloads", image: UIImage(named: "downloads") ?? UIImage())
         viewControllers = [sVC, fVC, dVC]
     }
     // MARK: - Helper Function

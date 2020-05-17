@@ -34,6 +34,7 @@
 		F3838E7A2470374100E3E7AF /* FavoritesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E792470374100E3E7AF /* FavoritesController.swift */; };
 		F3838E7C2470A24800E3E7AF /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */; };
 		F3838E7E2470DF8E00E3E7AF /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7D2470DF8E00E3E7AF /* UserDefault.swift */; };
+		F3838E802471773600E3E7AF /* DownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7F2471773600E3E7AF /* DownloadController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		F3838E792470374100E3E7AF /* FavoritesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesController.swift; sourceTree = "<group>"; };
 		F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 		F3838E7D2470DF8E00E3E7AF /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		F3838E7F2471773600E3E7AF /* DownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				F34929302466B0D800EF029D /* PodcastSearchController.swift */,
 				F3492965246A1CD800EF029D /* EpisodesController.swift */,
 				F3838E792470374100E3E7AF /* FavoritesController.swift */,
+				F3838E7F2471773600E3E7AF /* DownloadController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3838E802471773600E3E7AF /* DownloadController.swift in Sources */,
 				F3492971246AC9E600EF029D /* RSSFeed.swift in Sources */,
 				F34929312466B0D800EF029D /* PodcastSearchController.swift in Sources */,
 				F349293F2468045E00EF029D /* APIService.swift in Sources */,

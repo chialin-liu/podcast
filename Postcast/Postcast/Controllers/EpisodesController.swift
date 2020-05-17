@@ -101,6 +101,32 @@ class EpisodesController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     // MARK: - UITableView
+    func showDownloadHightLight() {
+        UIApplication.mainTabController().viewControllers?[2].tabBarItem.badgeValue = "New"
+    }
+    var hasDownLoaded: Bool = false
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let episode = episodes[indexPath.row]
+        hasDownLoaded = false
+        var downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
+        for item in downloadedEpisodes {
+            if item.author == episode.author && item.title == episode.title && item.description == episode.description {
+                hasDownLoaded = true
+            }
+        }
+        if !hasDownLoaded {
+            let downloadAction = UITableViewRowAction(style: .normal, title: "Download") { (_, _) in
+                let episode = self.episodes[indexPath.row]
+                UserDefaults.standard.downloadEpisode(episode: episode)
+                self.showDownloadHightLight()
+            }
+            return [downloadAction]
+        } else {
+            let downloadedAction = UITableViewRowAction(style: .normal, title: "Has Downloaded") { (_, _) in
+            }
+            return [downloadedAction]
+        }
+    }
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let activity = UIActivityIndicatorView(style: .large)
         activity.color = .darkGray
