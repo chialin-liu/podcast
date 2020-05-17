@@ -12,15 +12,21 @@ class FavoritePodcastCell: UICollectionViewCell {
     let imageView = UIImageView(image: UIImage(named: "appicon"))
     let nameLabel = UILabel()
     let artistLabel = UILabel()
+    var podcast: Podcast! {
+        didSet {
+            nameLabel.text = podcast.trackName
+            artistLabel.text = podcast.artistName
+            let url = URL(string: podcast.artworkUrl600 ?? "")
+            imageView.sd_setImage(with: url, completed: nil)
+        }
+    }
     fileprivate func styleUI() {
         nameLabel.text = "Yorick"
         nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         artistLabel.font = UIFont.systemFont(ofSize: 14)
         artistLabel.textColor = .lightGray
         artistLabel.text = "Chares"
-        
     }
-    
     fileprivate func setupStackView() {
         imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor).isActive = true
         let stackView = UIStackView(arrangedSubviews: [imageView, nameLabel, artistLabel])

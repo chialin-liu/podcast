@@ -45,19 +45,23 @@ class EpisodesController: UITableViewController {
     @objc func handleFetchSavedPodcast() {
         guard let data = UserDefaults.standard.data(forKey: favoritePodcastKey) else { return }
         let decoder = PropertyListDecoder()
-        if let podcast = try? decoder.decode(Podcast.self, from: data) {
-            print("podcast trackName", podcast.trackName ?? "")
+        if let savedPodcasts = try? decoder.decode([Podcast].self, from: data) {
+            for podcast in savedPodcasts {
+                print("podcast trackName:", podcast.trackName ?? "")
+            }
         }
     }
     @objc func handleSaveFavorite() {
-        print("right click")
+        print("save favorites")
         guard let podcast = self.podcast else { return }
         do {
+            var listPodcasts = UserDefaults.standard.fetchSavedPodcasts()
+            listPodcasts.append(podcast)
             let encoder = PropertyListEncoder()
-            let data = try encoder.encode(podcast)
-            UserDefaults.standard.set(data, forKey: favoritePodcastKey)
+            let encodedData = try encoder.encode(listPodcasts)
+            UserDefaults.standard.set(encodedData, forKey: favoritePodcastKey)
         } catch let err {
-            print("Failed to archive", err)
+            print("Fetch failed ", err)
         }
     }
     // MARK: - setup cell
