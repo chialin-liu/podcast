@@ -36,11 +36,34 @@ class EpisodesController: UITableViewController {
     }
     // MARK: - setup save favorite
     let favoritePodcastKey = "favoritePodcastKey"
+    var hasFavorited: Bool = false
     func setupNavigationBarButton() {
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
-            UIBarButtonItem(title: "Fetch", style: .plain, target: self, action: #selector(handleFetchSavedPodcast))
-        ]
+        hasFavorited = false
+        let savedPodcasts = UserDefaults.standard.fetchSavedPodcasts()
+        for item in savedPodcasts {
+            if item.trackName == self.podcast?.trackName {
+                hasFavorited = true
+            }
+        }
+        if hasFavorited {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(handleDeleteFavorite))
+        } else {
+            navigationItem.rightBarButtonItems = [
+                UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
+//                UIBarButtonItem(title: "Fetch", style: .plain, target: self, action: #selector(handleFetchSavedPodcast))
+            ]
+        }
+    }
+    @objc func handleDeleteFavorite() {
+        print("Delete favorite in heart image")
+        guard let podcast = self.podcast else { return }
+        UserDefaults.standard.deletePodcast(podcast: podcast)
+        UIApplication.mainTabController().viewControllers?[1].tabBarItem.badgeValue = nil
+        setupNavigationBarButton()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBarButton()
     }
     @objc func handleFetchSavedPodcast() {
         guard let data = UserDefaults.standard.data(forKey: favoritePodcastKey) else { return }
@@ -60,9 +83,14 @@ class EpisodesController: UITableViewController {
             let encoder = PropertyListEncoder()
             let encodedData = try encoder.encode(listPodcasts)
             UserDefaults.standard.set(encodedData, forKey: favoritePodcastKey)
+            showBadgeHightLight()
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(handleDeleteFavorite))
         } catch let err {
             print("Fetch failed ", err)
         }
+    }
+    func showBadgeHightLight() {
+        UIApplication.mainTabController().viewControllers?[1].tabBarItem.badgeValue = "New"
     }
     // MARK: - setup cell
     func setupCell() {
