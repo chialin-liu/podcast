@@ -12,8 +12,23 @@ extension UserDefaults {
     func fetchSavedPodcasts() -> [Podcast] {
         guard let readData = UserDefaults.standard.data(forKey: UserDefaults.favoritePodcastKey) else { return [] }
         let decoder = PropertyListDecoder()
-        
         guard let savedPodcasts = try? decoder.decode([Podcast].self, from: readData) else { return[] }
         return savedPodcasts
+    }
+    func deletePodcast(podcast: Podcast) {
+        var newPodcasts = [Podcast]()
+        let savedPodcasts = fetchSavedPodcasts()
+        for item in savedPodcasts {
+            if item.trackName != podcast.trackName || item.artistName != podcast.artistName {
+                newPodcasts.append(item)
+            }
+        }
+        let encoder = PropertyListEncoder()
+        do {
+            let encodedData = try encoder.encode(newPodcasts)
+            UserDefaults.standard.set(encodedData, forKey: UserDefaults.favoritePodcastKey)
+        } catch let err {
+            print("Save userdata failed", err)
+        }
     }
 }
