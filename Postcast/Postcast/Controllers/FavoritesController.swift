@@ -31,6 +31,11 @@ class FavoritesController: UICollectionViewController, UICollectionViewDelegateF
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episodeController = EpisodesController()
+        episodeController.podcast = self.podcasts[indexPath.item]
+        navigationController?.pushViewController(episodeController, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()

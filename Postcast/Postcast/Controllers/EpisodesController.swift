@@ -49,7 +49,7 @@ class EpisodesController: UITableViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(handleDeleteFavorite))
         } else {
             navigationItem.rightBarButtonItems = [
-                UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
+                UIBarButtonItem(title: "Add Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
 //                UIBarButtonItem(title: "Fetch", style: .plain, target: self, action: #selector(handleFetchSavedPodcast))
             ]
         }
