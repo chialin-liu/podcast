@@ -41,7 +41,7 @@ class APIService {
             do {
                 let searchResult = try  JSONDecoder().decode(SearchResults.self, from: data)
                 completionHandler(searchResult.results)
-                print("after completion")
+//                print("after completion")
 //                self.podcasts = searchResult.results
             } catch let decodeErr {
                 print("Failed to decode", decodeErr)

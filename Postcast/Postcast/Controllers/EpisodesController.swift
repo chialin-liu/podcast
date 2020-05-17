@@ -21,6 +21,7 @@ class EpisodesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCell()
+        setupNavigationBarButton()
     }
     // MARK: - fetchEpisodes
     fileprivate func fetchEpisodes() {
@@ -31,6 +32,32 @@ class EpisodesController: UITableViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    // MARK: - setup save favorite
+    let favoritePodcastKey = "favoritePodcastKey"
+    func setupNavigationBarButton() {
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
+            UIBarButtonItem(title: "Fetch", style: .plain, target: self, action: #selector(handleFetchSavedPodcast))
+        ]
+    }
+    @objc func handleFetchSavedPodcast() {
+        guard let data = UserDefaults.standard.data(forKey: favoritePodcastKey) else { return }
+        let decoder = PropertyListDecoder()
+        if let podcast = try? decoder.decode(Podcast.self, from: data) {
+            print("podcast trackName", podcast.trackName ?? "")
+        }
+    }
+    @objc func handleSaveFavorite() {
+        print("right click")
+        guard let podcast = self.podcast else { return }
+        do {
+            let encoder = PropertyListEncoder()
+            let data = try encoder.encode(podcast)
+            UserDefaults.standard.set(data, forKey: favoritePodcastKey)
+        } catch let err {
+            print("Failed to archive", err)
         }
     }
     // MARK: - setup cell
