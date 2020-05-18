@@ -29,7 +29,16 @@ class DownloadController: UITableViewController {
 //    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episode = episodes[indexPath.row]
-        UIApplication.mainTabController().maxmizePlayerDetail(episode: episode, playListEpisodes: episodes)
+        if episode.fileUrl != nil {
+            UIApplication.mainTabController().maxmizePlayerDetail(episode: episode, playListEpisodes: episodes)
+        } else {
+            let alertController = UIAlertController(title: "Download has not finished", message: "Play mp3 using internet instead", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (_) in
+                UIApplication.mainTabController().maxmizePlayerDetail(episode: episode, playListEpisodes: self.episodes)
+            }))
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            present(alertController, animated: true, completion: nil)
+        }
     }
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, _) in

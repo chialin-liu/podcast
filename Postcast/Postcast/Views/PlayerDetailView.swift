@@ -53,8 +53,21 @@ class PlayerDetailView: UIView {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayInfo
     }
     fileprivate func playEpisode() {
-        guard let url = URL(string: episode.streamUrl.toSecureHTTPS()) else { return }
-        let playerItem = AVPlayerItem(url: url)
+        if episode.fileUrl != nil {
+            playEpisodeUsingFileUrl()
+        } else {
+            guard let url = URL(string: episode.streamUrl.toSecureHTTPS()) else { return }
+            let playerItem = AVPlayerItem(url: url)
+            player.replaceCurrentItem(with: playerItem)
+            player.play()
+        }
+    }
+    func playEpisodeUsingFileUrl() {
+        guard let fileUrl = URL(string: episode.fileUrl ?? "") else { return }
+        let fileName = fileUrl.lastPathComponent
+        guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        trueLocation.appendPathComponent(fileName)
+        let playerItem = AVPlayerItem(url: trueLocation)
         player.replaceCurrentItem(with: playerItem)
         player.play()
     }
