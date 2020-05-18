@@ -20,14 +20,14 @@ class APIService {
         AF.download(episode.streamUrl, to: destination)
             .downloadProgress { (progress) in
                 NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
-//                print("Progres:", progress.fractionCompleted)
+                print("Progres:", progress.fractionCompleted)
             }
         .response { response in
             debugPrint(response)
             if response.error == nil {
                 print("Response.FileUrl",response.fileURL?.absoluteString ?? "")
                 let episodeDownloadComplete = EpisodeDownloadCompleteTuple(fileUrl: response.fileURL?.absoluteString ?? "", episodeTitle: episode.title)
-                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
+//                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
                 var downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
                 var selectedIndex: Int? = 0
                 for (idx, item) in downloadedEpisodes.enumerated() {

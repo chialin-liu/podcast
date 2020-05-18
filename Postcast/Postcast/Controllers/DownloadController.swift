@@ -18,7 +18,7 @@ class DownloadController: UITableViewController {
     }
     func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadProgress), name: .downloadProgress, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleDownloadComplete), name: .downloadComplete, object: nil)
     }
     @objc func handleDownloadComplete(notification: Notification) {
         print("Fetch downloaded episode")
@@ -81,10 +81,20 @@ class DownloadController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, _) in
             let deleteEpisode = self.episodes[indexPath.row]
-//            print("delete episode: \(deleteEpisode.title)")
             self.episodes.remove(at: indexPath.row)
             UserDefaults.standard.deleteEpisode(episode: deleteEpisode)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            //fix bug: to delete in filemanager
+            guard let deleteUrl = URL(string: deleteEpisode.fileUrl ?? "") else { return }
+            let fileName = deleteUrl.lastPathComponent
+            guard var trueLocation = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+            trueLocation.appendPathComponent(fileName)
+            print("True delete location:", trueLocation.absoluteString)
+            do {
+                try FileManager.default.removeItem(at: trueLocation)
+            } catch let deleteFileErr {
+                print("Delete file error", deleteFileErr)
+            }
         }
         return [deleteAction]
     }

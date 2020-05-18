@@ -21,7 +21,7 @@ class PodcastSearchController: UITableViewController, UISearchBarDelegate {
 //        view.backgroundColor = .white
         setupSearchBar()
         setupTableView()
-        searchBar(searchController.searchBar, textDidChange: "NPR")
+//        searchBar(searchController.searchBar, textDidChange: "NPR")
     }
     // MARK: - Search Bar implement
     var timer: Timer?
