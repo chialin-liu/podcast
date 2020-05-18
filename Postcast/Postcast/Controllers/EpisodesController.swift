@@ -46,7 +46,7 @@ class EpisodesController: UITableViewController {
             }
         }
         if hasFavorited {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(handleDeleteFavorite))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDeleteFavorite))
         } else {
             navigationItem.rightBarButtonItems = [
                 UIBarButtonItem(title: "Add Favorite", style: .plain, target: self, action: #selector(handleSaveFavorite)),
@@ -84,7 +84,7 @@ class EpisodesController: UITableViewController {
             let encodedData = try encoder.encode(listPodcasts)
             UserDefaults.standard.set(encodedData, forKey: favoritePodcastKey)
             showBadgeHightLight()
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(handleDeleteFavorite))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "heart")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDeleteFavorite))
         } catch let err {
             print("Fetch failed ", err)
         }
@@ -108,7 +108,7 @@ class EpisodesController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let episode = episodes[indexPath.row]
         hasDownLoaded = false
-        var downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
+        let downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
         for item in downloadedEpisodes {
             if item.author == episode.author && item.title == episode.title && item.description == episode.description {
                 hasDownLoaded = true
@@ -119,6 +119,7 @@ class EpisodesController: UITableViewController {
                 let episode = self.episodes[indexPath.row]
                 UserDefaults.standard.downloadEpisode(episode: episode)
                 self.showDownloadHightLight()
+                APIService.shared.downloadEpisode(episode: episode)
             }
             return [downloadAction]
         } else {

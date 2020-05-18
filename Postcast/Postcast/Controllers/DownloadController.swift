@@ -27,6 +27,10 @@ class DownloadController: UITableViewController {
 //        tableView.deleteRows(at: [indexPath], with: .automatic)
 //        UserDefaults.standard.deleteEpisode(episode: episode)
 //    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episode = episodes[indexPath.row]
+        UIApplication.mainTabController().maxmizePlayerDetail(episode: episode, playListEpisodes: episodes)
+    }
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, _) in
             let deleteEpisode = self.episodes[indexPath.row]

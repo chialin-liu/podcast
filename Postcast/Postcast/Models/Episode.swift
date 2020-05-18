@@ -16,6 +16,7 @@ struct Episode: Codable {
     let streamUrl: String
     //assume the imageUrl will not exist
     var imageUrl: String?
+    var fileUrl: String?
     init(feedItem: RSSFeedItem) {
         self.streamUrl = feedItem.enclosure?.attributes?.url ?? ""
         self.title = feedItem.title ?? ""

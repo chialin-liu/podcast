@@ -13,6 +13,29 @@ class APIService {
     //singleton
     static let shared = APIService()
     let baseiTunesUrl = "https://itunes.apple.com/search"
+    func downloadEpisode(episode: Episode) {
+        print("StreamURL:", episode.streamUrl)
+        let destination = DownloadRequest.suggestedDownloadDestination()
+        AF.download(episode.streamUrl, to: destination)
+            .downloadProgress { (progress) in
+                print("Download progress: \(progress.fractionCompleted)")
+            }
+        .response { response in debugPrint(response)
+            if response.error == nil {
+                print(response.fileURL?.absoluteString ?? "")
+                var downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
+                var selectedIndex: Int? = 0
+                for (idx, item) in downloadedEpisodes.enumerated() {
+                    if item.description == episode.description && item.author == episode.author && item.title == episode.title {
+                        selectedIndex = idx
+                    }
+                }
+                downloadedEpisodes[selectedIndex ?? 0].fileUrl = response.fileURL?.absoluteString ?? ""
+                let data = try? JSONEncoder().encode(downloadedEpisodes)
+                UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
+            }
+        }
+    }
     func fetchEpisodes(feedUrl: String, completionHandler: @escaping ([Episode]) -> Void) {
         let secureFeedUrl = feedUrl.toSecureHTTPS()
         guard let url = URL(string: secureFeedUrl) else { return }
