@@ -46,12 +46,22 @@
                             </label>
                         </subviews>
                     </stackView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q92-Lq-Nlx">
+                        <rect key="frame" x="28" y="114.5" width="76.5" height="34.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <size key="shadowOffset" width="0.0" height="1"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Q92-Lq-Nlx" firstAttribute="centerY" secondItem="bAH-Iv-Ohe" secondAttribute="centerY" id="1Pc-d1-haO"/>
                     <constraint firstItem="bAH-Iv-Ohe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="7Kc-r7-TtO"/>
                     <constraint firstItem="bAH-Iv-Ohe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YvT-cP-W3W"/>
                     <constraint firstItem="Cpe-B9-R3t" firstAttribute="leading" secondItem="bAH-Iv-Ohe" secondAttribute="trailing" constant="16" id="hGR-IC-hU6"/>
                     <constraint firstItem="Cpe-B9-R3t" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kin-g5-LI3"/>
+                    <constraint firstItem="Q92-Lq-Nlx" firstAttribute="centerX" secondItem="bAH-Iv-Ohe" secondAttribute="centerX" id="lqC-mg-627"/>
                     <constraint firstAttribute="trailing" secondItem="Cpe-B9-R3t" secondAttribute="trailing" constant="16" id="u3U-S7-fV1"/>
                 </constraints>
             </tableViewCellContentView>
@@ -59,6 +69,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="gbg-uz-czc" id="fgV-pX-XhT"/>
                 <outlet property="episodeImageView" destination="bAH-Iv-Ohe" id="CgQ-bC-NaQ"/>
+                <outlet property="progressLabel" destination="Q92-Lq-Nlx" id="QAM-mA-nvG"/>
                 <outlet property="pubDateLabel" destination="OBe-lI-Afq" id="kt2-Nz-oE8"/>
                 <outlet property="titleLabel" destination="F8V-8X-6Ad" id="plD-P7-ifq"/>
             </connections>

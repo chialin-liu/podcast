@@ -20,6 +20,7 @@ class EpisodeCell: UITableViewCell {
             episodeImageView.sd_setImage(with: url, completed: nil)
         }
     }
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var pubDateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel! {

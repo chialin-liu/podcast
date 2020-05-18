@@ -10,29 +10,36 @@ import Foundation
 import Alamofire
 import FeedKit
 class APIService {
+    typealias EpisodeDownloadCompleteTuple = (fileUrl: String, episodeTitle: String)
     //singleton
     static let shared = APIService()
     let baseiTunesUrl = "https://itunes.apple.com/search"
     func downloadEpisode(episode: Episode) {
-        print("StreamURL:", episode.streamUrl)
+        //print("StreamURL:", episode.streamUrl)
         let destination = DownloadRequest.suggestedDownloadDestination()
         AF.download(episode.streamUrl, to: destination)
             .downloadProgress { (progress) in
-                print("Download progress: \(progress.fractionCompleted)")
+                NotificationCenter.default.post(name: .downloadProgress, object: nil, userInfo: ["title": episode.title, "progress": progress.fractionCompleted])
+//                print("Progres:", progress.fractionCompleted)
             }
-        .response { response in debugPrint(response)
+        .response { response in
+            debugPrint(response)
             if response.error == nil {
-                print(response.fileURL?.absoluteString ?? "")
+                print("Response.FileUrl",response.fileURL?.absoluteString ?? "")
+                let episodeDownloadComplete = EpisodeDownloadCompleteTuple(fileUrl: response.fileURL?.absoluteString ?? "", episodeTitle: episode.title)
+                NotificationCenter.default.post(name: .downloadComplete, object: episodeDownloadComplete, userInfo: nil)
                 var downloadedEpisodes = UserDefaults.standard.fetchDownloadedEpisodes()
                 var selectedIndex: Int? = 0
                 for (idx, item) in downloadedEpisodes.enumerated() {
                     if item.description == episode.description && item.author == episode.author && item.title == episode.title {
+//                        print("checked selected title:", item.title)
                         selectedIndex = idx
                     }
                 }
                 downloadedEpisodes[selectedIndex ?? 0].fileUrl = response.fileURL?.absoluteString ?? ""
                 let data = try? JSONEncoder().encode(downloadedEpisodes)
                 UserDefaults.standard.set(data, forKey: UserDefaults.downloadedEpisodeKey)
+//                print("Userdefault download finished")
             }
         }
     }

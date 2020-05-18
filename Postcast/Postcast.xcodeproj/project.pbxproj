@@ -35,6 +35,7 @@
 		F3838E7C2470A24800E3E7AF /* FavoritePodcastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */; };
 		F3838E7E2470DF8E00E3E7AF /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7D2470DF8E00E3E7AF /* UserDefault.swift */; };
 		F3838E802471773600E3E7AF /* DownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E7F2471773600E3E7AF /* DownloadController.swift */; };
+		F3838E822472B59500E3E7AF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3838E812472B59500E3E7AF /* Notification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		F3838E7B2470A24800E3E7AF /* FavoritePodcastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePodcastCell.swift; sourceTree = "<group>"; };
 		F3838E7D2470DF8E00E3E7AF /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		F3838E7F2471773600E3E7AF /* DownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadController.swift; sourceTree = "<group>"; };
+		F3838E812472B59500E3E7AF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 				F3492976246C2EBE00EF029D /* CMTime.swift */,
 				F349297A246E9CC200EF029D /* UIApplication.swift */,
 				F3838E7D2470DF8E00E3E7AF /* UserDefault.swift */,
+				F3838E812472B59500E3E7AF /* Notification.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				F349296B246A5ECE00EF029D /* EpisodeCell.swift in Sources */,
 				F3838E7C2470A24800E3E7AF /* FavoritePodcastCell.swift in Sources */,
 				F3492968246A215800EF029D /* Episode.swift in Sources */,
+				F3838E822472B59500E3E7AF /* Notification.swift in Sources */,
 				F3492979246E567E00EF029D /* PlayerDetailViewGestures.swift in Sources */,
 				F3492975246ADC1C00EF029D /* PlayerDetailView.swift in Sources */,
 				F349291E246698B500EF029D /* ViewController.swift in Sources */,
