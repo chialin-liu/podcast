@@ -23,5 +23,23 @@ https://www.youtube.com/watch?v=8I8Qgjns0eI&t=1s
      - [x] Apply FeedKit framework to process RSS format in the iTunes-API
      - [x] Apply SDWebImage cache to speed up image load to reduce network loading
      
+- [x] Player View
+     - [x] Add play/pause button
+     - [x] Add forward/backward 15s
+     - [x] Pull down the player view and add animation
+     - [x] Pull up and maximize the player view
+     - [x] Add player view when the iPhone locks the screen
+     - [x] Add player view in the command center
+     - [x] Adjust the sound slide and time-line slide
+     - [x] Add next/previous episode play
+     
+- [x] Favorite View
+     - [x] Collection view list of all the favorites
+     - [x] Touch one of the favorite can show the episode view
+     - [x] Can remove the favorite
+     - [x] UserDefaults to store the favorites
 
+- [x] Download View
+     - [x] Use FileManager to store/delete the mp3 files in the local storage
+     - [x] When downloading the mp3 file, if it is not ready, we can decide to play using internet
     
