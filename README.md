@@ -1,5 +1,6 @@
 ## Apple store
 [DownLoad](https://apps.apple.com/tw/app/%E8%81%BD%E8%81%BDlisten-podcast/id1514520783)
+![image](https://github.com/chialin-liu/podcast/blob/master/podcast_screenShot/%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202020-05-28%20%E4%B8%8B%E5%8D%886.12.38.png)
 
 ## Screen Shots
 ![image](https://github.com/chialin-liu/podcast/blob/master/podcast_screenShot/Simulator%20Screen%20Shot%20-%20iPhone%2011%20-%202020-05-20%20at%2011.43.02.png "Search View")
